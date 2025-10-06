@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0
+    container_name: mosquitto-dev
+    restart: unless-stopped
+    ports:
+      - "1885:1883"   # MQTT TCP
+      - "9002:9001"   # MQTT WebSockets
+    volumes:
+      - ./mqtt/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+      - ./mqtt/mosquitto/config/aclfile:/mosquitto/config/aclfile
+      - ./mqtt/mosquitto/config/passwords:/mosquitto/config/passwords
+      - ./mqtt/mosquitto/data:/mosquitto/data
+      - ./mqtt/mosquitto/log:/mosquitto/log
+    networks:
+      - pbl6-network
+    command: >
+      sh -c "mosquitto_passwd -b /mosquitto/config/passwords admin admin && 
+             mosquitto -c /mosquitto/config/mosquitto.conf"
+
+  
+networks:
+  pbl6-network:
+    driver: bridge

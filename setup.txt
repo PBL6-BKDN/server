@@ -1,0 +1,16 @@
+transformers
+datasets
+soundfile
+scipy
+accelerate
+zmq
+pyzmq 
+fastapi 
+uvicorn
+dotenv
+mcp[cli]
+openai-agents
+paho-mqtt==2.1.0
+readability-lxml 
+beautifulsoup4
+lxml

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pbl6-ai-server"
+version = "0.1.0"
+requires-python = ">=3.10"
+description = "PBL6 AI Server"
+readme = "README.md"
+
+[tool.setuptools]
+include-package-data = true
+"py-modules" = ["config", "log", "device", "type"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mcp_custom*", "mqtt*", "audio*"]
+exclude = ["tests*", "scripts*"]
